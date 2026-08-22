@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Point of Sale System</title>
+  <style>
+    body {
+      font-family: 'Courier New', Courier, monospace;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    h1 {
+        justify-content: center;
+        text-align: center;
+         color: #333;
+    }
+    .pos-container {
+      background: white;
+      border: 2px solid #333;
+      width: 400px;
+      padding: 20px;
+      box-shadow: 4px 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .pos-containerr {
+      background: white;
+      border: 2px solid #333;
+      width: 385px;
+      padding: 5px;
+      box-shadow: 4px 4px 10px rgba(0,0,0,0.1);
+    }
+
+    h2, h3 { 
+        text-align: center; 
+        margin-bottom: 10px; 
+    }
+
+    table { 
+        width: 100%; 
+        border-collapse: collapse; 
+        margin-bottom: 15px; 
+    }
+
+    th, td { 
+        text-align: left; 
+        padding: 5px; 
+        border-bottom: 1px dashed #ccc; 
+    }
+    .form-group { 
+        margin-bottom: 10px; 
+        display: flex; 
+        gap: 5px; 
+    }
+
+    input, select, button { 
+        padding: 6px; 
+        font-family: inherit; 
+    }
+
+    input[type="number"] { 
+        width: 70px; 
+    }
+
+    button { 
+        cursor: pointer; 
+        background: #333; 
+        color: white; 
+        border: none; 
+    }
+
+    button:hover { 
+        background: #555; 
+    }
+
+    .summary { 
+        border-top: 2px solid #333; 
+        padding-top: 10px; 
+        margin-top: 10px; 
+    }
+
+    .summary-line { 
+        display: flex; 
+        justify-content: space-between; 
+        margin-bottom: 5px; 
+    }
+
+    .actions { 
+        display: flex; 
+        gap: 10px; 
+        justify-content: center; 
+        margin-top: 15px; 
+    }
+
+    .hidden { 
+        display: none; 
+    }
+
+  </style>
+</head>
+<body>
+    
+    <div class="pos-container">
+
+        <div class="pos-containerr">
+            <h3>Activity(Practice)</h3>
+            <h3>BEAH PAYOT | CCE 106</h3>
+        </div>
+
+        <h2>Products</h2>
+        <table>
+            <thead>
+            <tr><th>Code</th><th>Stock</th><th>Item</th><th>Price</th></tr>
+            </thead>
+            <tbody id="product-list"></tbody>
+        </table>
+
+        <!-- Order Input Section -->
+        <div id="order-inputs">
+            <div class="form-group">
+            <select id="select-product"></select>
+            <input type="number" id="input-qty" min="1" placeholder="Qty" value="1">
+            <button onclick="addOrderItem()">Add Item</button>
+            </div>
+        </div>
+
+        <h3>Orders</h3>
+        <table>
+            <thead>
+            <tr><th>Code</th><th>Item</th><th>QTY</th><th>Price</th></tr>
+            </thead>
+            <tbody id="order-list"></tbody>
+        </table>
+
+        <!-- Checkout Section -->
+        <div class="summary">
+            <div class="summary-line">
+            <span>Subtotal:</span>
+            <span>P<span id="subtotal">0</span></span>
+            </div>
+            <div class="summary-line">
+            <span>Discount (10%):</span>
+            <span>-P<span id="discount">0</span></span>
+            </div>
+            <div class="summary-line"><strong>Total:</strong> <strong>P<span id="total">0</span></strong></div>
+            
+            <div class="form-group" style="margin-top: 10px;">
+            <input type="number" id="input-cash" placeholder="Cash Amount" min="0">
+            <button onclick="processPayment()">Pay</button>
+            </div>
+
+            <div class="summary-line"><strong>Change:</strong> <strong>P<span id="change">0</span></strong></div>
+        </div>
+
+        <div class="actions">
+            <button onclick="resetSystem()">[1] EXIT / RESET</button>
+            <button onclick="newOrder()">[2] Order Again</button>
+        </div>
+    </div>
+
+    <script>
+        let products = {
+            "001": { name: "Milk", stock: 10, price: 50 },
+            "002": { name: "Apple", stock: 15, price: 10 },
+            "003": { name: "Bread", stock: 5, price: 60 },
+            "004": { name: "Sugar", stock: 7, price: 35 }
+        };
+
+        let orders = [];
+
+        function renderProducts() {
+            const productTable = document.getElementById("product-list");
+            const selectProduct = document.getElementById("select-product");
+            
+            productTable.innerHTML = "";
+            selectProduct.innerHTML = "";
+
+            for (let code in products) {
+            let p = products[code];
+            productTable.innerHTML += `<tr><td>${code}</td><td>${p.stock}</td><td>${p.name}</td><td>P${p.price}</td></tr>`;
+            selectProduct.innerHTML += `<option value="${code}">${code} - ${p.name}</option>`;
+            }
+        }
+
+        function addOrderItem() {
+            const code = document.getElementById("select-product").value;
+            const qtyInput = document.getElementById("input-qty");
+            const qty = parseInt(qtyInput.value);
+            const product = products[code];
+
+            if (isNaN(qty) || qty <= 0) return alert("Enter a valid quantity.");
+            if (qty > product.stock) return alert("Not enough stock available!");
+
+            product.stock -= qty;
+            const price = qty * product.price;
+
+            orders.push({ code, name: product.name, qty, price });
+            renderProducts();
+            renderOrders();
+            calculateTotals();
+        }
+
+        function renderOrders() {
+            const orderTable = document.getElementById("order-list");
+            orderTable.innerHTML = "";
+            orders.forEach(o => {
+            orderTable.innerHTML += `<tr><td>${o.code}</td><td>${o.name}</td><td>${o.qty}</td><td>P${o.price}</td></tr>`;
+            });
+        }
+
+        function calculateTotals() {
+            let subtotal = orders.reduce((sum, item) => sum + item.price, 0);
+            let discount = subtotal >= 500 ? subtotal * 0.10 : 0;
+            let total = subtotal - discount;
+
+            document.getElementById("subtotal").innerText = subtotal;
+            document.getElementById("discount").innerText = discount;
+            document.getElementById("total").innerText = total;
+        }
+
+        function processPayment() {
+            const total = parseFloat(document.getElementById("total").innerText);
+            const cash = parseFloat(document.getElementById("input-cash").value);
+
+            if (orders.length === 0) return alert("No items ordered yet!");
+            if (isNaN(cash) || cash < total) return alert("Insufficient cash!");
+
+            const change = cash - total;
+            document.getElementById("change").innerText = change;
+        }
+
+        function newOrder() {
+            orders = [];
+            document.getElementById("input-cash").value = "";
+            document.getElementById("change").innerText = "0";
+            renderOrders();
+            calculateTotals();
+        }
+
+        function resetSystem() {
+            products = {
+            "001": { name: "Milk", stock: 10, price: 50 },
+            "002": { name: "Apple", stock: 15, price: 10 },
+            "003": { name: "Bread", stock: 5, price: 60 },
+            "004": { name: "Sugar", stock: 7, price: 35 }
+            };
+            newOrder();
+            renderProducts();
+        }
+
+        // Initialize view on load
+        renderProducts();
+    </script>
+
+</body>
+</html>
