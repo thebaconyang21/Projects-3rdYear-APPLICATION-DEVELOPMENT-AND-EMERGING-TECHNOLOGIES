@@ -14,10 +14,16 @@ addStudent.addEventListener("click", function(){
     console.log(course.value);
     console.log(yearlevel.value);
 
-    studentInfo.innerHTML = "Name: " + studentName.value + "<br>" +
+studentInfo.innerHTML = "<h3>Student Record</h3>" +
+                            "Name: " + studentName.value + "<br>" +
                              "Age: " + age.value + "<br>" + 
                              "Course: " + course.value + "<br>" +
                              "Year Level: " + yearlevel.value;
+
+    studentName.value = "";
+    age.value = "";
+    course.value = "";
+    yearlevel.value = "";
 });
 
 // let studentName = prompt("What is your name?");
