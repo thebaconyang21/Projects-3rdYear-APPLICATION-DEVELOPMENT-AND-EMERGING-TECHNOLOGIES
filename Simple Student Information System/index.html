@@ -4,30 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Registration System</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="system">
 
-    <h1>Student Registration System</h1>
+        <!-- LEFT: FORM -->
+         <div class="form-box">
+            <h1>STUDENT REGISTRATION</h1>
+            <p class="subtitle">Enter Student Information</p>
 
-    <label for="Name">Name:</label>
-    <input type="text" id="studentName">
+            <label for="studentName">Name:</label>
+            <input type="text" id="studentName">
 
-    <label for="Age">Age:</label>
-    <input type="number" id="age">
+            <label for="age">Age:</label>
+            <input type="number" id="age">
 
-    <label for="Course">Course:</label>
-    <input type="text" id="course">
+            <label for="course">Course:</label>
+            <input type="text" id="course">
 
-    <label for="YearLevel">Year Level:</label>
-    <input type="text" id="yearlevel">
+            <label for="yearlevel">Year Level:</label>
+            <input type="text" id="yearlevel">
 
-    <button id="addStudent">Add Student</button>
+            <button id="addStudent">Add Student</button>
 
-    <h2>Student Records</h2>
+         </div>
 
-    <div id="studentInfo"></div>
+        <!-- RIGHT: RECORDS -->
+         <div class="records-box">
+            <h2>STUDENT RECORDS</h2>
+            <p class="subtitle">Registered Student</p>
 
-    <div id="studentInfo"></div>
+            <div id="studentInfo"></div>
+         </div>
+
+    </div>
+
+  
     <script src="script.js"></script>
 </body>
 </html>
