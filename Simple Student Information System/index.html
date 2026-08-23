@@ -12,21 +12,21 @@
 
         <!-- LEFT: FORM -->
          <div class="form-box">
-            <h1>STUDENT REGISTRATION</h1>
+            <h2>STUDENT REGISTRATION</h2>
             <p class="subtitle">Enter Student Information</p>
 
             <label for="studentName">Name:</label>
             <input type="text" id="studentName">
-
+            <br>
             <label for="age">Age:</label>
             <input type="number" id="age">
-
+            <br>
             <label for="course">Course:</label>
             <input type="text" id="course">
-
+            <br>
             <label for="yearlevel">Year Level:</label>
             <input type="text" id="yearlevel">
-
+            <br>
             <button id="addStudent">Add Student</button>
 
          </div>
@@ -36,7 +36,23 @@
             <h2>STUDENT RECORDS</h2>
             <p class="subtitle">Registered Student</p>
 
-            <div id="studentInfo"></div>
+            <table id="studentTable">
+
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Course</th>
+                        <th>Year Level</th>
+                    </tr>
+                </thead>
+
+                <tbody id="studentInfo">
+
+                </tbody>
+
+            </table>
          </div>
 
     </div>

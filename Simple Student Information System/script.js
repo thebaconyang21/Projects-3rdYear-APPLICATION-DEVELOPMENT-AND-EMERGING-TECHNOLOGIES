@@ -14,11 +14,13 @@ addStudent.addEventListener("click", function(){
     console.log(course.value);
     console.log(yearlevel.value);
 
-studentInfo.innerHTML = "<h3>Student Record</h3>" +
-                            "Name: " + studentName.value + "<br>" +
-                             "Age: " + age.value + "<br>" + 
-                             "Course: " + course.value + "<br>" +
-                             "Year Level: " + yearlevel.value;
+studentInfo.innerHTML = "<tr>" +
+                        "<td>1</td>" +
+                        "<td>" + studentName.value + "</td>" +
+                        "<td>" + age.value + "</td>" +
+                        "<td>" + course.value + "</td>" +
+                        "<td>" + yearlevel.value + "</td>" +
+                        "</tr>";
 
     studentName.value = "";
     age.value = "";
