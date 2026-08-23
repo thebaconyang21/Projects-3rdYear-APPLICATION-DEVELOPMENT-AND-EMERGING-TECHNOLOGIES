@@ -5,3 +5,15 @@ let studentName = prompt("What is your name?");
 let age = prompt("What is your age?");
 let course = prompt("What is your course?");
 let yearLevel = prompt("What is your year level?");
+
+console.log(studentName);
+console.log(age);
+console.log(course);
+console.log(yearLevel);
+
+let studentInfo = document.getElementById("studentInfo");
+
+studentInfo.innerHTML = "Name: " + studentName + "<br>" +
+                        "Age: " + age + "<br>" + 
+                        "Course: " + course + "<br>" +
+                        "Year Level: " + yearLevel;
