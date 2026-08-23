@@ -1,6 +1,6 @@
 body {
     font-family: "Courier New", monospace;
-    background-color: #c0c0c0;
+    background-color: #ffffff;
     margin: 0;
     padding: 30px;
 }
@@ -15,7 +15,7 @@ body {
 .form-box,
 .records-box {
     background-color: #d4d0c8;
-    border: 3px solid #404040;
+    border: 2px solid #404040;
     padding: 20px;
 }
 
