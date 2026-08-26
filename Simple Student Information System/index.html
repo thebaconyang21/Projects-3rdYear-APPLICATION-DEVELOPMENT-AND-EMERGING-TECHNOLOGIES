@@ -3,38 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Student Registration System</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
     <div class="system">
 
-        <!-- LEFT: FORM -->
-         <div class="form-box">
-            <h2>STUDENT REGISTRATION</h2>
-            <p class="subtitle">Enter Student Information</p>
+        <!-- LEFT SIDE: REGISTRATION FORM -->
+        <div class="form-box">
 
-            <label for="studentName">Name:</label>
-            <input type="text" id="studentName">
-            <br>
-            <label for="age">Age:</label>
-            <input type="number" id="age">
-            <br>
-            <label for="course">Course:</label>
-            <input type="text" id="course">
-            <br>
-            <label for="yearlevel">Year Level:</label>
-            <input type="text" id="yearlevel">
-            <br>
-            <button id="addStudent">Add Student</button>
+            <h1>STUDENT REGISTRATION</h1>
 
-         </div>
+            <p class="subtitle">ENTER STUDENT INFORMATION</p>
 
-        <!-- RIGHT: RECORDS -->
-         <div class="records-box">
+            <div class="form-group">
+                <label for="studentName">Name:</label>
+                <input type="text" id="studentName">
+            </div>
+
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age">
+            </div>
+
+            <div class="form-group">
+                <label for="course">Course:</label>
+                <input type="text" id="course">
+            </div>
+
+            <div class="form-group">
+                <label for="yearlevel">Year Level:</label>
+                <input type="text" id="yearlevel">
+            </div>
+
+            <button id="addStudent">ADD STUDENT</button>
+
+        </div>
+
+
+        <!-- RIGHT SIDE: STUDENT RECORDS -->
+        <div class="records-box">
+
             <h2>STUDENT RECORDS</h2>
-            <p class="subtitle">Registered Student</p>
+
+            <p class="subtitle">REGISTERED STUDENTS</p>
 
             <table id="studentTable">
 
@@ -49,15 +65,17 @@
                 </thead>
 
                 <tbody id="studentInfo">
-
+                    <!-- JavaScript will add student rows here -->
                 </tbody>
 
             </table>
-         </div>
+
+        </div>
 
     </div>
 
-  
+
     <script src="script.js"></script>
+
 </body>
 </html>

@@ -1,46 +1,136 @@
+/* GENERAL PAGE */
+
 body {
-    font-family: "Courier New", monospace;
-    background-color: #ffffff;
     margin: 0;
     padding: 30px;
+    background-color: #c0c0c0;
+    font-family: "Courier New", monospace;
 }
+
+
+/* MAIN SYSTEM */
 
 .system {
     display: flex;
     gap: 20px;
-    max-width: 1000px;
-    margin: auto;
+    max-width: 1100px;
+    margin: 0 auto;
 }
+
+
+/* BOTH BOXES */
 
 .form-box,
 .records-box {
     background-color: #d4d0c8;
-    border: 2px solid #404040;
+    border: 3px solid #404040;
     padding: 20px;
+    box-shadow: 4px 4px 0px #808080;
 }
 
-.form-box label {
-    display: inline-block;
-    width: 120px;
-}
 
-.form-box input {
-    margin-bottom: 8px;
-}
+/* LEFT FORM */
 
 .form-box {
-    width: 40%;
+    width: 35%;
 }
 
+
+/* RIGHT RECORDS */
+
 .records-box {
-    width: 60%;
+    width: 65%;
+    overflow-x: auto;
 }
+
+
+/* HEADINGS */
+
+h1,
+h2 {
+    margin-top: 0;
+    font-family: "Courier New", monospace;
+    letter-spacing: 2px;
+}
+
+
+/* SUBTITLE */
+
+.subtitle {
+    font-size: 14px;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+
+/* FORM GROUP */
+
+.form-group {
+    margin-bottom: 12px;
+}
+
+
+/* LABELS */
+
+.form-group label {
+    display: inline-block;
+    width: 110px;
+    font-size: 16px;
+}
+
+
+/* INPUTS */
+
+.form-group input {
+    width: 200px;
+    padding: 7px;
+    box-sizing: border-box;
+    border: 2px solid #404040;
+    background-color: white;
+    font-family: "Courier New", monospace;
+    font-size: 15px;
+}
+
+
+/* ADD BUTTON */
+
+#addStudent {
+    margin-top: 10px;
+    padding: 8px 20px;
+    background-color: #c0c0c0;
+    border: 2px solid #404040;
+    font-family: "Courier New", monospace;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+
+/* BUTTON HOVER */
+
+#addStudent:hover {
+    background-color: #404040;
+    color: white;
+}
+
+
+/* BUTTON CLICK */
+
+#addStudent:active {
+    transform: translateY(2px);
+}
+
+
+/* TABLE */
 
 #studentTable {
     width: 100%;
     border-collapse: collapse;
     font-family: "Courier New", monospace;
+    background-color: #eeeeee;
 }
+
+
+/* TABLE CELLS */
 
 #studentTable th,
 #studentTable td {
@@ -49,14 +139,34 @@ body {
     text-align: left;
 }
 
+
+/* TABLE HEADER */
+
 #studentTable th {
     background-color: #404040;
     color: white;
+    font-weight: bold;
 }
 
-/* .container {
-    width: 400px;
-    margin: 50px auto;
-    padding: 20px;
-    border: 1px solid black;
-}    */
+
+/* TABLE ROW */
+
+#studentTable td {
+    background-color: #eeeeee;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+
+    .system {
+        flex-direction: column;
+    }
+
+    .form-box,
+    .records-box {
+        width: auto;
+    }
+
+}
