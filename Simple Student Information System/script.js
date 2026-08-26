@@ -9,8 +9,15 @@ let yearlevel = document.getElementById("yearlevel");
 let addStudent = document.getElementById("addStudent");
 let studentInfo = document.getElementById("studentInfo");
 
+let errorModal = document.getElementById("errorModal");
+let closeModal = document.getElementById("closeModal");
+
 let studentNumber = 1;
 
+// CLOSE MODAL
+closeModal.addEventListener("click", function() {
+    errorModal.style.display = "none";
+});
 
 addStudent.addEventListener("click", function() {
 
@@ -21,7 +28,7 @@ addStudent.addEventListener("click", function() {
         course.value === "" ||
         yearlevel.value === ""
     ) {
-        alert("Please fill in all fields.");
+        errorModal.style.display = "flex";
         return;
     }
 
