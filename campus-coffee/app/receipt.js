@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet } from "react-native";
 import { useLocalSearchParams } from "expo-router";
+import PixelFrog from "../components/PixelFrog";
 
 const PRICE_PER_CUP = 150;
 
@@ -12,6 +13,9 @@ export default function ReceiptScreen() {
 
   return (
     <View style={styles.page}>
+      <View style={styles.frogWrap}>
+        <PixelFrog />
+      </View>
       <View style={styles.slip}>
         <Text style={styles.perforation}>• • • • • • • • • • • • • • •</Text>
 
@@ -54,7 +58,7 @@ export default function ReceiptScreen() {
 }
 
 const COLORS = {
-  bg: "#D9C9A3",
+  bg: "#f2f1ef",
   paper: "#F1E4C3",
   ink: "#3E2C1E",
   inkFaded: "#7A6647",
@@ -67,6 +71,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: 24,
+  },
+  frogWrap: {
+    marginBottom: -6,
   },
   slip: {
     width: "100%",

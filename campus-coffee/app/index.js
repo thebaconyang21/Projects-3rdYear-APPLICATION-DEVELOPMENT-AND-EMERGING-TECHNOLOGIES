@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import { Link } from "expo-router";
+import PixelFrog from "../components/PixelFrog";
 
 const PRICE_PER_CUP = 150;
 
@@ -9,8 +10,11 @@ export default function OrderScreen() {
 
   return (
     <View style={styles.container}>
+      <View style={styles.frogWrap}>
+        <PixelFrog />
+      </View>
       <View style={styles.ticket}>
-        <Text style={styles.brand}>Campus Coffee Co.</Text>
+        <Text style={styles.brand}>Campus Coffee</Text>
         <Text style={styles.est}>~ est. order pad ~</Text>
 
         <View style={styles.rule} />
@@ -78,7 +82,7 @@ export default function OrderScreen() {
 }
 
 const COLORS = {
-  bg: "#D9C9A3",
+  bg: "#ffffff",
   paper: "#F1E4C3",
   paperShadow: "#C9B481",
   ink: "#3E2C1E",
@@ -93,6 +97,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: 24,
+  },
+  frogWrap: {
+    marginBottom: -6,
   },
   ticket: {
     width: "100%",
