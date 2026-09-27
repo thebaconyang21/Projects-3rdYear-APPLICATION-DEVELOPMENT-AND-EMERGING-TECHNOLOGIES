@@ -9,172 +9,186 @@ export default function OrderScreen() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.brand}>Campus Coffee</Text>
-        <Text style={styles.subtitle}>Build your order</Text>
-      </View>
+      <View style={styles.ticket}>
+        <Text style={styles.brand}>Campus Coffee Co.</Text>
+        <Text style={styles.est}>~ est. order pad ~</Text>
 
-      <View style={styles.hero}>
-        <Text style={styles.count}>{coffeeCount}</Text>
-        <Text style={styles.countLabel}>
-          {coffeeCount === 1 ? "cup" : "cups"} of coffee
+        <View style={styles.rule} />
+
+        <View style={styles.hero}>
+          <Text style={styles.count}>{coffeeCount}</Text>
+          <Text style={styles.countLabel}>
+            {coffeeCount === 1 ? "CUP OF COFFEE" : "CUPS OF COFFEE"}
+          </Text>
+        </View>
+
+        <View style={styles.stepper}>
+          <Pressable
+            style={({ pressed }) => [
+              styles.stepButton,
+              pressed && styles.stepButtonPressed,
+            ]}
+            onPress={() => {
+              if (coffeeCount > 1) {
+                setCoffeeCount(coffeeCount - 1);
+              }
+            }}
+          >
+            <Text style={styles.stepGlyph}>−</Text>
+          </Pressable>
+
+          <Pressable
+            style={({ pressed }) => [
+              styles.stepButton,
+              pressed && styles.stepButtonPressed,
+            ]}
+            onPress={() => {
+              setCoffeeCount(coffeeCount + 1);
+            }}
+          >
+            <Text style={styles.stepGlyph}>+</Text>
+          </Pressable>
+        </View>
+
+        <Text style={styles.priceHint}>
+          {PRICE_PER_CUP} PESOS PER CUP · {coffeeCount * PRICE_PER_CUP} TOTAL
         </Text>
-      </View>
 
-      <View style={styles.stepper}>
-        <Pressable
-          style={({ pressed }) => [
-            styles.stepButton,
-            pressed && styles.stepButtonPressed,
-          ]}
-          onPress={() => {
-            if (coffeeCount > 1) {
-              setCoffeeCount(coffeeCount - 1);
-            }
+        <View style={styles.rule} />
+
+        <Link
+          href={{
+            pathname: "/receipt",
+            params: { coffeeCount: coffeeCount },
           }}
+          asChild
         >
-          <Text style={styles.stepGlyph}>–</Text>
-        </Pressable>
-
-        <View style={styles.stepDivider} />
-
-        <Pressable
-          style={({ pressed }) => [
-            styles.stepButton,
-            pressed && styles.stepButtonPressed,
-          ]}
-          onPress={() => {
-            setCoffeeCount(coffeeCount + 1);
-          }}
-        >
-          <Text style={styles.stepGlyph}>+</Text>
-        </Pressable>
+          <Pressable
+            style={({ pressed }) => [
+              styles.stamp,
+              pressed && styles.stampPressed,
+            ]}
+          >
+            <Text style={styles.stampText}>Send To Kitchen</Text>
+          </Pressable>
+        </Link>
       </View>
-
-      <Text style={styles.priceHint}>
-        ₱{PRICE_PER_CUP} per cup · ₱{coffeeCount * PRICE_PER_CUP} total
-      </Text>
-
-      <View style={styles.spacer} />
-
-      <Link
-        href={{
-          pathname: "/receipt",
-          params: { coffeeCount: coffeeCount },
-        }}
-        asChild
-      >
-        <Pressable
-          style={({ pressed }) => [
-            styles.checkoutButton,
-            pressed && styles.checkoutButtonPressed,
-          ]}
-        >
-          <Text style={styles.checkoutText}>View receipt</Text>
-        </Pressable>
-      </Link>
     </View>
   );
 }
 
 const COLORS = {
-  bg: "#15100C",
-  surface: "#1F1811",
-  surfaceBorder: "#33291D",
-  cream: "#F4EBDD",
-  muted: "#A6957E",
-  gold: "#E3B23C",
-  goldPressed: "#C79A2F",
+  bg: "#D9C9A3",
+  paper: "#F1E4C3",
+  paperShadow: "#C9B481",
+  ink: "#3E2C1E",
+  inkFaded: "#7A6647",
+  oxblood: "#7A2E2E",
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.bg,
-    paddingHorizontal: 28,
-    paddingTop: 72,
-    paddingBottom: 40,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: 24,
   },
-  header: {
-    marginBottom: 48,
+  ticket: {
+    width: "100%",
+    maxWidth: 360,
+    backgroundColor: COLORS.paper,
+    borderWidth: 2,
+    borderColor: COLORS.ink,
+    paddingVertical: 28,
+    paddingHorizontal: 24,
   },
   brand: {
-    fontSize: 26,
-    fontWeight: "800",
-    color: COLORS.cream,
-    letterSpacing: -0.5,
+    fontFamily: "serif",
+    fontSize: 24,
+    fontWeight: "700",
+    color: COLORS.ink,
+    textAlign: "center",
   },
-  subtitle: {
-    fontSize: 15,
-    color: COLORS.muted,
-    marginTop: 4,
+  est: {
+    fontFamily: "serif",
+    fontSize: 13,
+    fontStyle: "italic",
+    color: COLORS.inkFaded,
+    textAlign: "center",
+    marginTop: 2,
+  },
+  rule: {
+    borderBottomWidth: 1,
+    borderStyle: "dashed",
+    borderColor: COLORS.inkFaded,
+    marginVertical: 18,
   },
   hero: {
     alignItems: "center",
-    marginBottom: 40,
+    marginBottom: 22,
   },
   count: {
-    fontSize: 96,
-    fontWeight: "800",
-    color: COLORS.gold,
-    lineHeight: 96,
-    letterSpacing: -2,
+    fontFamily: "serif",
+    fontSize: 84,
+    fontWeight: "700",
+    color: COLORS.ink,
+    lineHeight: 88,
   },
   countLabel: {
-    fontSize: 17,
-    color: COLORS.muted,
-    marginTop: 4,
+    fontFamily: "monospace",
+    fontSize: 13,
+    letterSpacing: 2,
+    color: COLORS.inkFaded,
+    marginTop: 6,
   },
   stepper: {
     flexDirection: "row",
-    alignSelf: "center",
-    alignItems: "center",
-    backgroundColor: COLORS.surface,
-    borderWidth: 1,
-    borderColor: COLORS.surfaceBorder,
-    borderRadius: 20,
-    overflow: "hidden",
+    justifyContent: "center",
+    gap: 16,
+    marginBottom: 18,
   },
   stepButton: {
-    width: 76,
-    height: 64,
+    width: 64,
+    height: 56,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: COLORS.paper,
+    borderWidth: 2,
+    borderColor: COLORS.ink,
   },
   stepButtonPressed: {
-    backgroundColor: COLORS.surfaceBorder,
-  },
-  stepDivider: {
-    width: 1,
-    height: "100%",
-    backgroundColor: COLORS.surfaceBorder,
+    backgroundColor: COLORS.paperShadow,
   },
   stepGlyph: {
-    fontSize: 30,
-    fontWeight: "600",
-    color: COLORS.cream,
+    fontFamily: "serif",
+    fontSize: 28,
+    fontWeight: "700",
+    color: COLORS.ink,
   },
   priceHint: {
+    fontFamily: "monospace",
+    fontSize: 12,
+    letterSpacing: 1,
+    color: COLORS.inkFaded,
     textAlign: "center",
-    color: COLORS.muted,
-    fontSize: 14,
-    marginTop: 16,
   },
-  spacer: {
-    flex: 1,
-  },
-  checkoutButton: {
-    backgroundColor: COLORS.gold,
-    borderRadius: 18,
-    paddingVertical: 18,
+  stamp: {
+    borderWidth: 3,
+    borderColor: COLORS.oxblood,
+    paddingVertical: 14,
     alignItems: "center",
+    transform: [{ rotate: "-1deg" }],
   },
-  checkoutButtonPressed: {
-    backgroundColor: COLORS.goldPressed,
+  stampPressed: {
+    backgroundColor: "#E9D6B5",
   },
-  checkoutText: {
-    color: COLORS.bg,
+  stampText: {
+    fontFamily: "serif",
     fontSize: 17,
     fontWeight: "700",
+    letterSpacing: 3,
+    color: COLORS.oxblood,
+    textTransform: "uppercase",
   },
 });
