@@ -7,7 +7,6 @@ const PRICE_PER_CUP = 150;
 export default function ReceiptScreen() {
   const { coffeeCount } = useLocalSearchParams();
 
-  // coffeeCount arrives as a string via route params, so convert it to a number.
   const cups = Number(coffeeCount);
   const totalBill = cups * PRICE_PER_CUP;
 
@@ -19,7 +18,7 @@ export default function ReceiptScreen() {
       <View style={styles.slip}>
         <Text style={styles.perforation}>• • • • • • • • • • • • • • •</Text>
 
-        <Text style={styles.slipTitle}>CAMPUS COFFEE CO.</Text>
+        <Text style={styles.slipTitle}>CAMPUS COFFEE</Text>
         <Text style={styles.slipAddress}>ORDER RECEIPT</Text>
 
         <View style={styles.doubleRule} />
@@ -58,7 +57,7 @@ export default function ReceiptScreen() {
 }
 
 const COLORS = {
-  bg: "#f2f1ef",
+  bg: "#ffffff",
   paper: "#F1E4C3",
   ink: "#3E2C1E",
   inkFaded: "#7A6647",

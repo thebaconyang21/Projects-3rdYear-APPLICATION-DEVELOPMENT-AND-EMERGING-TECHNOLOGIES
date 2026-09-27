@@ -10,8 +10,8 @@ export default function Layout() {
         headerShadowVisible: true,
       }}
     >
-      <Stack.Screen name="index" options={{ title: "Order Pad" }} />
-      <Stack.Screen name="receipt" options={{ title: "Receipt" }} />
+      <Stack.Screen name="index" options={{ title: "Order Screen" }} />
+      <Stack.Screen name="receipt" options={{ title: "Checkout Screen/Receipt" }} />
     </Stack>
   );
 }
