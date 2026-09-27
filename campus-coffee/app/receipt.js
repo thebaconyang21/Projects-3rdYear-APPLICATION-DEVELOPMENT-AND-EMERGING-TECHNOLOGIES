@@ -11,82 +11,132 @@ export default function ReceiptScreen() {
   const totalBill = cups * PRICE_PER_CUP;
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>🧾 Your Receipt</Text>
+    <View style={styles.page}>
+      <View style={styles.slip}>
+        <Text style={styles.slipTitle}>Campus Coffee</Text>
+        <Text style={styles.slipSubtitle}>Order receipt</Text>
 
-      <View style={styles.card}>
-        <View style={styles.row}>
-          <Text style={styles.label}>Cups Ordered:</Text>
-          <Text style={styles.value}>{cups}</Text>
+        <View style={styles.dashedRule} />
+
+        <View style={styles.line}>
+          <Text style={styles.lineLabel}>Item</Text>
+          <View style={styles.leader} />
+          <Text style={styles.lineValue}>Coffee</Text>
         </View>
 
-        <View style={styles.row}>
-          <Text style={styles.label}>Price per Cup:</Text>
-          <Text style={styles.value}>₱{PRICE_PER_CUP}</Text>
+        <View style={styles.line}>
+          <Text style={styles.lineLabel}>Cups ordered</Text>
+          <View style={styles.leader} />
+          <Text style={styles.lineValue}>{cups}</Text>
         </View>
 
-        <View style={styles.divider} />
+        <View style={styles.line}>
+          <Text style={styles.lineLabel}>Price per cup</Text>
+          <View style={styles.leader} />
+          <Text style={styles.lineValue}>₱{PRICE_PER_CUP}</Text>
+        </View>
 
-        <View style={styles.row}>
-          <Text style={styles.totalLabel}>Total Bill:</Text>
+        <View style={styles.dashedRule} />
+
+        <View style={styles.totalRow}>
+          <Text style={styles.totalLabel}>Total bill</Text>
           <Text style={styles.totalValue}>₱{totalBill}</Text>
         </View>
+
+        <View style={styles.dashedRule} />
+
+        <Text style={styles.thanks}>Thank you for your order</Text>
       </View>
     </View>
   );
 }
 
+const COLORS = {
+  bg: "#15100C",
+  paper: "#F4EBDD",
+  paperMuted: "#8A7A63",
+  ink: "#1F1811",
+  gold: "#B8860B",
+};
+
 const styles = StyleSheet.create({
-  container: {
+  page: {
     flex: 1,
+    backgroundColor: COLORS.bg,
     alignItems: "center",
     justifyContent: "center",
-    padding: 20,
-    backgroundColor: "#FFF8F0",
+    paddingHorizontal: 28,
   },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 24,
-    color: "#4B2E2B",
-  },
-  card: {
+  slip: {
     width: "100%",
-    backgroundColor: "#fff",
+    maxWidth: 340,
+    backgroundColor: COLORS.paper,
     borderRadius: 12,
-    padding: 20,
-    shadowColor: "#000",
-    shadowOpacity: 0.1,
-    shadowRadius: 6,
-    elevation: 3,
+    paddingVertical: 28,
+    paddingHorizontal: 24,
   },
-  row: {
+  slipTitle: {
+    fontSize: 20,
+    fontWeight: "800",
+    color: COLORS.ink,
+    textAlign: "center",
+    letterSpacing: -0.3,
+  },
+  slipSubtitle: {
+    fontSize: 13,
+    color: COLORS.paperMuted,
+    textAlign: "center",
+    marginTop: 2,
+    marginBottom: 4,
+  },
+  dashedRule: {
+    borderBottomWidth: 1,
+    borderStyle: "dashed",
+    borderColor: COLORS.paperMuted,
+    marginVertical: 16,
+  },
+  line: {
+    flexDirection: "row",
+    alignItems: "flex-end",
+    marginBottom: 10,
+  },
+  lineLabel: {
+    fontSize: 14,
+    color: COLORS.ink,
+  },
+  lineValue: {
+    fontSize: 14,
+    fontWeight: "700",
+    color: COLORS.ink,
+    fontVariant: ["tabular-nums"],
+  },
+  leader: {
+    flex: 1,
+    borderBottomWidth: 1,
+    borderStyle: "dotted",
+    borderColor: COLORS.paperMuted,
+    marginHorizontal: 6,
+    marginBottom: 3,
+  },
+  totalRow: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 12,
-  },
-  label: {
-    fontSize: 16,
-    color: "#555",
-  },
-  value: {
-    fontSize: 16,
-    fontWeight: "600",
-    color: "#333",
-  },
-  divider: {
-    height: 1,
-    backgroundColor: "#ddd",
-    marginVertical: 8,
+    alignItems: "center",
   },
   totalLabel: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "700",
-    color: "#4B2E2B",
+    color: COLORS.ink,
   },
   totalValue: {
-    fontSize: 18,
-    fontWeight: "700",
-    color: "#4B2E2B",
+    fontSize: 24,
+    fontWeight: "800",
+    color: COLORS.gold,
+    fontVariant: ["tabular-nums"],
+  },
+  thanks: {
+    textAlign: "center",
+    fontSize: 12,
+    color: COLORS.paperMuted,
   },
 });
