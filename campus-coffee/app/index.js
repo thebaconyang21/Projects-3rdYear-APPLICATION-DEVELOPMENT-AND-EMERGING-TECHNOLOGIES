@@ -69,7 +69,7 @@ export default function OrderScreen() {
               pressed && styles.stampPressed,
             ]}
           >
-            <Text style={styles.stampText}>Send To Kitchen</Text>
+            <Text style={styles.stampText}>View Receipt</Text>
           </Pressable>
         </Link>
       </View>
@@ -190,5 +190,6 @@ const styles = StyleSheet.create({
     letterSpacing: 3,
     color: COLORS.oxblood,
     textTransform: "uppercase",
+    textAlign: "center",
   },
 });
