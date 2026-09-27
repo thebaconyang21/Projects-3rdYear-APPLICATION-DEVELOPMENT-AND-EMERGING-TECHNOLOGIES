@@ -13,50 +13,51 @@ export default function ReceiptScreen() {
   return (
     <View style={styles.page}>
       <View style={styles.slip}>
-        <Text style={styles.slipTitle}>Campus Coffee</Text>
-        <Text style={styles.slipSubtitle}>Order receipt</Text>
+        <Text style={styles.perforation}>• • • • • • • • • • • • • • •</Text>
 
-        <View style={styles.dashedRule} />
+        <Text style={styles.slipTitle}>CAMPUS COFFEE CO.</Text>
+        <Text style={styles.slipAddress}>ORDER RECEIPT</Text>
+
+        <View style={styles.doubleRule} />
 
         <View style={styles.line}>
-          <Text style={styles.lineLabel}>Item</Text>
-          <View style={styles.leader} />
-          <Text style={styles.lineValue}>Coffee</Text>
+          <Text style={styles.lineText}>ITEM</Text>
+          <Text style={styles.lineText}>COFFEE</Text>
         </View>
 
         <View style={styles.line}>
-          <Text style={styles.lineLabel}>Cups ordered</Text>
-          <View style={styles.leader} />
-          <Text style={styles.lineValue}>{cups}</Text>
+          <Text style={styles.lineText}>QTY</Text>
+          <Text style={styles.lineText}>{cups}</Text>
         </View>
 
         <View style={styles.line}>
-          <Text style={styles.lineLabel}>Price per cup</Text>
-          <View style={styles.leader} />
-          <Text style={styles.lineValue}>₱{PRICE_PER_CUP}</Text>
+          <Text style={styles.lineText}>UNIT PRICE</Text>
+          <Text style={styles.lineText}>{PRICE_PER_CUP}.00</Text>
         </View>
 
-        <View style={styles.dashedRule} />
+        <View style={styles.doubleRule} />
 
         <View style={styles.totalRow}>
-          <Text style={styles.totalLabel}>Total bill</Text>
-          <Text style={styles.totalValue}>₱{totalBill}</Text>
+          <Text style={styles.totalLabel}>TOTAL</Text>
+          <Text style={styles.totalValue}>₱{totalBill}.00</Text>
         </View>
 
-        <View style={styles.dashedRule} />
+        <View style={styles.doubleRule} />
 
-        <Text style={styles.thanks}>Thank you for your order</Text>
+        <Text style={styles.thanks}>*** THANK YOU ***</Text>
+        <Text style={styles.thanksSmall}>please come again</Text>
+
+        <Text style={styles.perforation}>• • • • • • • • • • • • • • •</Text>
       </View>
     </View>
   );
 }
 
 const COLORS = {
-  bg: "#15100C",
-  paper: "#F4EBDD",
-  paperMuted: "#8A7A63",
-  ink: "#1F1811",
-  gold: "#B8860B",
+  bg: "#D9C9A3",
+  paper: "#F1E4C3",
+  ink: "#3E2C1E",
+  inkFaded: "#7A6647",
 };
 
 const styles = StyleSheet.create({
@@ -65,58 +66,55 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.bg,
     alignItems: "center",
     justifyContent: "center",
-    paddingHorizontal: 28,
+    paddingHorizontal: 24,
   },
   slip: {
     width: "100%",
-    maxWidth: 340,
+    maxWidth: 320,
     backgroundColor: COLORS.paper,
-    borderRadius: 12,
-    paddingVertical: 28,
-    paddingHorizontal: 24,
+    paddingVertical: 20,
+    paddingHorizontal: 22,
+    borderWidth: 1,
+    borderColor: COLORS.inkFaded,
+  },
+  perforation: {
+    fontFamily: "monospace",
+    fontSize: 12,
+    color: COLORS.inkFaded,
+    textAlign: "center",
+    letterSpacing: 1,
   },
   slipTitle: {
-    fontSize: 20,
-    fontWeight: "800",
+    fontFamily: "monospace",
+    fontSize: 16,
+    fontWeight: "700",
     color: COLORS.ink,
     textAlign: "center",
-    letterSpacing: -0.3,
+    marginTop: 14,
+    letterSpacing: 1,
   },
-  slipSubtitle: {
-    fontSize: 13,
-    color: COLORS.paperMuted,
+  slipAddress: {
+    fontFamily: "monospace",
+    fontSize: 12,
+    color: COLORS.inkFaded,
     textAlign: "center",
     marginTop: 2,
-    marginBottom: 4,
   },
-  dashedRule: {
+  doubleRule: {
     borderBottomWidth: 1,
     borderStyle: "dashed",
-    borderColor: COLORS.paperMuted,
-    marginVertical: 16,
+    borderColor: COLORS.inkFaded,
+    marginVertical: 14,
   },
   line: {
     flexDirection: "row",
-    alignItems: "flex-end",
-    marginBottom: 10,
+    justifyContent: "space-between",
+    marginBottom: 8,
   },
-  lineLabel: {
-    fontSize: 14,
+  lineText: {
+    fontFamily: "monospace",
+    fontSize: 13,
     color: COLORS.ink,
-  },
-  lineValue: {
-    fontSize: 14,
-    fontWeight: "700",
-    color: COLORS.ink,
-    fontVariant: ["tabular-nums"],
-  },
-  leader: {
-    flex: 1,
-    borderBottomWidth: 1,
-    borderStyle: "dotted",
-    borderColor: COLORS.paperMuted,
-    marginHorizontal: 6,
-    marginBottom: 3,
   },
   totalRow: {
     flexDirection: "row",
@@ -124,19 +122,31 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   totalLabel: {
-    fontSize: 16,
+    fontFamily: "monospace",
+    fontSize: 15,
+    fontWeight: "700",
+    color: COLORS.ink,
+    letterSpacing: 1,
+  },
+  totalValue: {
+    fontFamily: "monospace",
+    fontSize: 18,
     fontWeight: "700",
     color: COLORS.ink,
   },
-  totalValue: {
-    fontSize: 24,
-    fontWeight: "800",
-    color: COLORS.gold,
-    fontVariant: ["tabular-nums"],
-  },
   thanks: {
+    fontFamily: "monospace",
+    fontSize: 13,
+    color: COLORS.ink,
     textAlign: "center",
-    fontSize: 12,
-    color: COLORS.paperMuted,
+    marginTop: 4,
+  },
+  thanksSmall: {
+    fontFamily: "monospace",
+    fontSize: 11,
+    color: COLORS.inkFaded,
+    textAlign: "center",
+    marginTop: 2,
+    marginBottom: 14,
   },
 });
